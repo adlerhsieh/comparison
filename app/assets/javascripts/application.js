@@ -16,7 +16,7 @@
 //= require_tree .
 
 var countdown = 30;
-var time = setInterval(time_count, 10);
+var time = 0;
 var answer_random = [0, 0];
 var answer_result = 0;
 var answer_string = "";
@@ -25,17 +25,11 @@ var right_option = [];
 var random_formula = 0;
 var score = 0;
 var life = 3;
+var difficulty = 5;
 
 $(document).ready(function(){
-	formula_1(5);
-	left_option.push(answer_result);
-	left_option.push(answer_string);
-	$(".left_number").text(left_option[1]);
-	formula_2(3);
-	right_option.push(answer_result);
-	right_option.push(answer_string);
-	$(".right_number").text(right_option[1]);
-	
+	refresh();
+	$(".countdown").text(countdown.toFixed(2));
 	$(".left_block").click(function(){
 		if (left_option[0] >= right_option[0]) {
 			correct_answer();
@@ -51,7 +45,45 @@ $(document).ready(function(){
 			wrong_answer()
 		};
 	});
+
+	
+	$(document).keydown(function(){
+		if (event.which == 13) {
+			document.location.reload();
+		};
+	});
+
+	$(".menu").click(function(){
+		time = setInterval(time_count, 10);
+		$(document).bind("keydown", check_key);
+		$(".menu").css("display", "none");
+	});
+
+	$(".game_over").click(function(){
+		document.location.reload();
+	});
+
+	$(".restart").click(function(){
+		document.location.reload();
+	});
 });
+
+function check_key(){
+	if (event.which == 37) {
+			if (left_option[0] >= right_option[0]) {
+				correct_answer();
+			} else {
+				wrong_answer()
+			};
+		};
+	if (event.which == 39) {
+		if (right_option[0] >= left_option[0]) {
+			correct_answer();
+		} else {
+			wrong_answer();
+		};
+	};
+}
 
 function time_count() {
 	countdown = countdown - 0.01;
@@ -65,6 +97,7 @@ function time_count() {
 function correct_answer() {
 	score = score + 1;
 	$(".score").text(score);
+	refresh();
 }
 
 function wrong_answer() {
@@ -72,9 +105,87 @@ function wrong_answer() {
 	$(".life").text(life);
 	if (life == 0) {
 		$(".game_over").css("display", "block");
+		$(document).unbind("keydown", check_key);
 		clearInterval(time);
+	} else {
+		refresh();
 	}
 }
+
+function refresh() {
+	clear_data();
+	if (score > difficulty) {
+		difficulty = difficulty + 5;
+	};
+	switch(difficulty) {
+		case 5:
+			formula_1(20);
+			store_left_number_data();
+			formula_1(20);
+			store_right_number_data();
+			break;
+		case 10:
+			formula_1(100);
+			store_left_number_data();
+			formula_1(100);
+			store_right_number_data();
+			break;
+		case 15:
+			formula_1(500);
+			store_left_number_data();
+			formula_1(500);
+			store_right_number_data();
+			break;
+		case 20:
+			formula_2(20);
+			store_left_number_data();
+			formula_2(20);
+			store_right_number_data();
+			break;
+		case 25:
+			formula_2(60);
+			store_left_number_data();
+			formula_2(60);
+			store_right_number_data();
+			break;
+		case 30:
+			formula_2(100);
+			store_left_number_data();
+			formula_2(100);
+			store_right_number_data();
+			break;
+		case 35:
+			formula_2(500);
+			store_left_number_data();
+			formula_2(500);
+			store_right_number_data();
+			break;
+		default:
+			formula_3(100);
+			store_left_number_data();
+			formula_3(100);
+			store_right_number_data();
+			break;
+	};
+
+};
+
+function clear_data() {
+	left_option = [];
+	right_option = [];
+}
+
+function store_left_number_data() {
+	left_option.push(answer_result);
+	left_option.push(answer_string);
+	$(".left_number").text(left_option[1]);
+};
+
+function store_right_number_data() {
+	right_option.push(answer_result);
+	right_option.push(answer_string);
+	$(".right_number").text(right_option[1]);
+};
 
 function formula_1(rand_number){
 	answer_random = Math.round(Math.random() * rand_number + 1);
@@ -86,4 +197,16 @@ function formula_2(rand_number){
 	answer_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
 	answer_result = answer_random[0] + answer_random[1];
 	answer_string = answer_random[0] + " + " + answer_random[1];
+};
+
+function formula_3(rand_number){
+	answer_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
+	answer_result = answer_random[0] + answer_random[1] + answer_random[2];
+	answer_string = answer_random[0] + " + " + answer_random[1] + " + " + answer_random[2];
+};
+
+function formula_4(rand_number){
+	answer_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
+	answer_result = answer_random[0] + answer_random[1] + answer_random[2] - answer_random[3];
+	answer_string = answer_random[0] + " + " + answer_random[1] + " + " + answer_random[2] + " - " + answer_random[3];
 };
