@@ -61,11 +61,34 @@ div {
 .left_number {
 	position: relative;
 	text-align: center;
-	top: 50%;
+	top: 40%;
+	font-size: 60px;
 }
 
 .right_number {
 	position: relative;
 	text-align: center;
-	top: 50%;
+	top: 40%;
+	font-size: 60px;
+}
+
+.game_over {
+	display: none;
+	position: absolute;
+	height: 80%;
+	width: 100%;
+	background-color: white;
+}
+
+.inner_text {
+	font-size: 80px;
+	text-align: center;
+	position: relative;
+	top: 35%;
+}
+
+.aligncenter {
+	text-align: center;
+	position: relative;
+	top: 10px;
 }

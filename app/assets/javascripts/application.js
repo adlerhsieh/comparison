@@ -17,26 +17,40 @@
 
 var countdown = 30;
 var time = setInterval(time_count, 10);
-var second_random = [0, 0];
-var second_result = 0;
-var second_string = "";
-
+var answer_random = [0, 0];
+var answer_result = 0;
+var answer_string = "";
+var left_option = [];
+var right_option = [];
+var random_formula = 0;
+var score = 0;
+var life = 3;
 
 $(document).ready(function(){
-	var left_option = [];
-	var right_option = [];
-	second_formula(5);
-	left_option.push(second_result);
-	left_option.push(second_string);
+	formula_1(5);
+	left_option.push(answer_result);
+	left_option.push(answer_string);
 	$(".left_number").text(left_option[1]);
-	second_formula(3);
-	right_option.push(second_result);
-	right_option.push(second_string);
+	formula_2(3);
+	right_option.push(answer_result);
+	right_option.push(answer_string);
 	$(".right_number").text(right_option[1]);
-});
+	
+	$(".left_block").click(function(){
+		if (left_option[0] >= right_option[0]) {
+			correct_answer();
+		} else {
+			wrong_answer()
+		};
+	});
 
-$(document).click(function(){
-
+	$(".right_block").click(function(){
+		if (right_option[0] >= left_option[0]) {
+			correct_answer();
+		} else {
+			wrong_answer()
+		};
+	});
 });
 
 function time_count() {
@@ -48,10 +62,28 @@ function time_count() {
 	};
 };
 
-function second_formula(rand_number){
-	second_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
-	second_result = second_random[0] + second_random[1];
-	second_string = second_random[0] + " + " + second_random[1];
+function correct_answer() {
+	score = score + 1;
+	$(".score").text(score);
+}
+
+function wrong_answer() {
+	life = life - 1;
+	$(".life").text(life);
+	if (life == 0) {
+		$(".game_over").css("display", "block");
+		clearInterval(time);
+	}
+}
+
+function formula_1(rand_number){
+	answer_random = Math.round(Math.random() * rand_number + 1);
+	answer_result = answer_random;
+	answer_string = answer_random;
 };
 
-
+function formula_2(rand_number){
+	answer_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
+	answer_result = answer_random[0] + answer_random[1];
+	answer_string = answer_random[0] + " + " + answer_random[1];
+};
