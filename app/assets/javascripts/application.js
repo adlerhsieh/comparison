@@ -29,6 +29,7 @@ var difficulty = 5;
 
 $(document).ready(function(){
 	refresh();
+	$(document).bind("keydown", start_by_enter);
 	$(".countdown").text(countdown.toFixed(2));
 	$(".left_block").click(function(){
 		if (left_option[0] >= right_option[0]) {
@@ -46,15 +47,9 @@ $(document).ready(function(){
 		};
 	});
 
-	
-	$(document).keydown(function(){
-		if (event.which == 13) {
-			document.location.reload();
-		};
-	});
-
 	$(".menu").click(function(){
 		time = setInterval(time_count, 10);
+		$(document).unbind("keydown", start_by_enter);
 		$(document).bind("keydown", check_key);
 		$(".menu").css("display", "none");
 	});
@@ -114,9 +109,29 @@ function wrong_answer() {
 	}
 }
 
+function start_by_enter() {
+	if (event.which == 13) {
+		time = setInterval(time_count, 10);
+		$(document).bind("keydown", check_key);
+		$(".menu").css("display", "none");
+	};
+}
+
+function continue_by_enter() {
+	if (event.which == 13) {
+		show_score_board();
+	};
+}
+
+function show_score_board() {
+	$(".score_board").css("display", "block");
+	$(".score_board").animate({opacity: 1});
+}
+
 function game_over() {
 	$(".game_over").css("display", "block");
-	$(document).unbind("keydown", check_key);		
+	$(document).unbind("keydown", check_key);
+	$(document).bind("keydown", continue_by_enter);		
 	clearInterval(time);
 	$(".score_input").val(score);
 }
