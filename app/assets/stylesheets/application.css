@@ -31,10 +31,6 @@
 	left: 50%;
 }
 
-.left_block:hover, .right_block:hover {
-	background-color: white;
-}
-
 .bottom_block {
 	position: absolute;
 	display: inline-block;
@@ -94,9 +90,21 @@
 
 .aligncenter {
 	text-align: center;
+	margin-top: -10px;
+}
+
+.bottom_text {
 	position: relative;
-	top: 10px;
+	top: 15px;
+	font-size: 20px;
+}
+
+.bottom_text_2 {
 	font-size: 24px;
+}
+
+.restart {
+	top: -25px;
 }
 
 .restart:hover {
@@ -111,6 +119,22 @@
 	background-color: white;
 }
 
+.score_board {
+	display: block;
+	position: absolute;
+	height: 80%;
+	width: 100%;
+	background-color: #E4E4E4;
+}
+
+.ranking {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	margin-top: 20px;
+}
+
 @media all and (max-width: 700px) {
 
 	.left_number {
@@ -120,7 +144,22 @@
 	.right_number {
 		font-size: 30px;
 	}
-	.aligncenter {
+	.bottom_text {
+		font-size: 12px;
+	}
+	.bottom_text_2 {
 		font-size: 14px;
+	}
+	.inner_text {
+		font-size: 60px;
+	}
+	.restart {
+	top: -10px;
+}
+}
+
+@media all and (min-width: 701px) {
+	.left_block:hover, .right_block:hover {
+		background-color: white;
 	}
 }

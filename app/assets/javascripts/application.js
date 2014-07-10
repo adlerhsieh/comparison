@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-var countdown = 30;
+var countdown = 2;
 var time = 0;
 var answer_random = [0, 0];
 var answer_result = 0;
@@ -88,9 +88,13 @@ function check_key(){
 function time_count() {
 	countdown = countdown - 0.01;
 	$(".countdown").text(countdown.toFixed(2));
+	if (countdown < 10) {
+		$(".countdown").css("color", "red");
+	}
 	if (countdown < 0) {
 		clearInterval(time);
 		$(".countdown").text(0);
+		game_over();
 	};
 };
 
@@ -104,71 +108,18 @@ function wrong_answer() {
 	life = life - 1;
 	$(".life").text(life);
 	if (life == 0) {
-		$(".game_over").css("display", "block");
-		$(document).unbind("keydown", check_key);
-		clearInterval(time);
+		game_over();
 	} else {
 		refresh();
 	}
 }
 
-function refresh() {
-	clear_data();
-	if (score > difficulty) {
-		difficulty = difficulty + 5;
-	};
-	switch(difficulty) {
-		case 5:
-			formula_1(20);
-			store_left_number_data();
-			formula_1(20);
-			store_right_number_data();
-			break;
-		case 10:
-			formula_1(100);
-			store_left_number_data();
-			formula_1(100);
-			store_right_number_data();
-			break;
-		case 15:
-			formula_1(500);
-			store_left_number_data();
-			formula_1(500);
-			store_right_number_data();
-			break;
-		case 20:
-			formula_2(20);
-			store_left_number_data();
-			formula_2(20);
-			store_right_number_data();
-			break;
-		case 25:
-			formula_2(60);
-			store_left_number_data();
-			formula_2(60);
-			store_right_number_data();
-			break;
-		case 30:
-			formula_2(100);
-			store_left_number_data();
-			formula_2(100);
-			store_right_number_data();
-			break;
-		case 35:
-			formula_2(500);
-			store_left_number_data();
-			formula_2(500);
-			store_right_number_data();
-			break;
-		default:
-			formula_3(100);
-			store_left_number_data();
-			formula_3(100);
-			store_right_number_data();
-			break;
-	};
-
-};
+function game_over() {
+	$(".game_over").css("display", "block");
+	$(document).unbind("keydown", check_key);		
+	clearInterval(time);
+	$(".score_input").val(score);
+}
 
 function clear_data() {
 	left_option = [];
@@ -185,28 +136,4 @@ function store_right_number_data() {
 	right_option.push(answer_result);
 	right_option.push(answer_string);
 	$(".right_number").text(right_option[1]);
-};
-
-function formula_1(rand_number){
-	answer_random = Math.round(Math.random() * rand_number + 1);
-	answer_result = answer_random;
-	answer_string = answer_random;
-};
-
-function formula_2(rand_number){
-	answer_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
-	answer_result = answer_random[0] + answer_random[1];
-	answer_string = answer_random[0] + " + " + answer_random[1];
-};
-
-function formula_3(rand_number){
-	answer_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
-	answer_result = answer_random[0] + answer_random[1] + answer_random[2];
-	answer_string = answer_random[0] + " + " + answer_random[1] + " + " + answer_random[2];
-};
-
-function formula_4(rand_number){
-	answer_random = [Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1), Math.round(Math.random() * rand_number + 1)];
-	answer_result = answer_random[0] + answer_random[1] + answer_random[2] - answer_random[3];
-	answer_string = answer_random[0] + " + " + answer_random[1] + " + " + answer_random[2] + " - " + answer_random[3];
 };

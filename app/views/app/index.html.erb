@@ -8,19 +8,20 @@
 <div class="bottom_block">
 	<div class="top_divider">
 			<div class="chain_block" style="margin-left: 9.5%">
-				<p class="aligncenter">時間：<span class="countdown"></span></p>
+				<p class="aligncenter bottom_text">時間</p><p class="countdown aligncenter bottom_text_2"></p>
 			</div>
 			<div class="chain_block">
-				<p class="aligncenter">分數：<span class="score">0</span></p>
+				<p class="aligncenter bottom_text">分數</p><p class="score aligncenter bottom_text_2">0</p>
 			</div>
 			<div class="chain_block">
-				<p class="aligncenter">機會：<span class="life">3</span></p>
+				<p class="aligncenter bottom_text">機會</p><p class="life aligncenter bottom_text_2">3</p>
 			</div>
 			<div class="chain_block">
-				<p class="aligncenter restart">Restart</p>
+				<p class="aligncenter restart bottom_text">Restart</p>
 			</div>
 	</div>
 </div>
 
 <div class="menu"><p class="inner_text">數字比大小</p></div>
-<div class="game_over"><p class="inner_text">Game Over</p><p class="inner_text" style="font-size: 20px;">點一下或按Enter鍵重新開始</p></div>
+<div class="game_over"><p class="inner_text">Game Over</p><p class="inner_text" style="font-size: 20px;">點一下或按Enter鍵</p></div>
+<div class="score_board"><%= render partial: "app/score_board" %></div>
