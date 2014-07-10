@@ -4,6 +4,9 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(user_params)
+  	if @user.name == ""
+  		@user.name = "匿名"
+  	end
   	@user.save
   	redirect_to root_url
   end

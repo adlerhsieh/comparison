@@ -80,6 +80,12 @@
 	top: 35%;
 }
 
+.opening_title {
+	font-size: 80px;
+	text-align: center;
+	margin-top: 10%;
+}
+
 .start {
 	display: block;
 	margin-left: auto;
@@ -138,11 +144,7 @@
 
 @media all and (max-width: 700px) {
 
-	.left_number {
-		font-size: 30px;
-	}
-
-	.right_number {
+	.left_number, .right_number {
 		font-size: 30px;
 	}
 	.bottom_text {
@@ -151,16 +153,25 @@
 	.bottom_text_2 {
 		font-size: 14px;
 	}
-	.inner_text {
+	.inner_text, .opening_title {
 		font-size: 60px;
 	}
 	.restart {
-	top: -10px;
-}
+		top: -10px;
+	}
 }
 
-@media all and (min-width: 701px) {
+@media all and (max-device-width: 4000px) {
 	.left_block:hover, .right_block:hover {
 		background-color: white;
+	}
+	.bottom_text {
+		font-size: 20px;
+	}
+	.bottom_text_2 {
+		font-size: 24px;
+	}
+	.inner_text, .opening_title {
+		font-size: 80px;
 	}
 }

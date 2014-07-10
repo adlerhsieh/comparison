@@ -4,20 +4,10 @@
 		<% @user.each do |f| %>
 			<tr style="background-color: #E4E4E4;">
 				<td>第<%= i %>名：</td>
-				<td><%= link_to f.name, user_path(f), method: :delete %></td>
+				<td><%= f.name %></td>
 				<td><%= f.score %>分</td>
 			</tr>
 			<% i = i + 1 %>
 		<% end %>
 	</table>
 </div>
-<%= form_for @new_user do |f| %>
-	<div class="row" align="center">
-		<div class="small-offset-2 small-1 columns" style="top: 10px; font-size: 20px;">分數</div>
-		<div class="small-1 columns"><%= f.text_field :score, :readonly => "readonly", :class => "score_input", :style => "width: 100%;" %></div>
-		<div class="small-1 columns" style="top: 10px; font-size: 20px;">姓名</div>
-		<div class="small-2 columns"><%= f.text_field :name, :style => "width: 100%;" %></div>
-		<div class="small-2 columns"><%= f.submit "加入排名", class: "tiny button" %></div>
-		<div class="small-2 columns"></div>
-	</div>
-<% end %>

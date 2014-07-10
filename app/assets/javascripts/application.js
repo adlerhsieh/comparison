@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-var countdown = 2;
+var countdown = 30;
 var time = 0;
 var answer_random = [0, 0];
 var answer_result = 0;
@@ -55,7 +55,7 @@ $(document).ready(function(){
 	});
 
 	$(".game_over").click(function(){
-		document.location.reload();
+		show_score_board();
 	});
 
 	$(".restart").click(function(){
