@@ -165,14 +165,8 @@
 	}
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 1024px) {
 	.left_block:hover, .right_block:hover {
 		background-color: white;
-	}
-}
-
-@media only screen and (max-device-width: 700px) {
-	.left_block:hover, .right_block:hover {
-		background-color: black;
 	}
 }
