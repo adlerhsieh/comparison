@@ -161,17 +161,8 @@
 	}
 }
 
-@media all and (max-device-width: 4000px) {
+@media screen {
 	.left_block:hover, .right_block:hover {
 		background-color: white;
-	}
-	.bottom_text {
-		font-size: 20px;
-	}
-	.bottom_text_2 {
-		font-size: 24px;
-	}
-	.inner_text, .opening_title {
-		font-size: 80px;
 	}
 }
