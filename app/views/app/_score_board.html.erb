@@ -3,7 +3,7 @@
 	<table class="ranking_table" align="center" style="background-color: #E4E4E4; border: 1px solid black">
 		<% @user.each do |f| %>
 			<tr style="background-color: #E4E4E4;">
-				<td>第<%= i %>名：</td>
+				<td><%= i %>. </td>
 				<td><%= f.name %></td>
 				<td><%= f.score %>分</td>
 			</tr>

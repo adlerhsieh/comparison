@@ -142,6 +142,10 @@
 	margin-top: 10%;
 }
 
+.invisible {
+	opacity: 0;
+}
+
 @media all and (max-width: 700px) {
 
 	.left_number, .right_number {
@@ -154,20 +158,14 @@
 		font-size: 14px;
 	}
 	.inner_text, .opening_title {
-		font-size: 60px;
+		font-size: 45px;
 	}
 	.restart {
 		top: -10px;
 	}
 }
 
-@media only screen {
-	.left_block:hover, .right_block:hover {
-		background-color: black;
-	}
-}
-
-@media only handheld {
+@media only screen and (max-device-width: 700px) {
 	.left_block:hover, .right_block:hover {
 		background-color: white;
 	}
