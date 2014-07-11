@@ -161,7 +161,13 @@
 	}
 }
 
-@media handheld {
+@media only screen {
+	.left_block:hover, .right_block:hover {
+		background-color: black;
+	}
+}
+
+@media only handheld {
 	.left_block:hover, .right_block:hover {
 		background-color: white;
 	}
