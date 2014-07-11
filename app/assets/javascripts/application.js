@@ -28,6 +28,7 @@ var life = 3;
 var difficulty = 5;
 
 $(document).ready(function(){
+	$('body').bind('touchmove', function(e){e.preventDefault()})
 	refresh();
 	$(document).bind("keydown", start_by_enter);
 	$(".countdown").text(countdown.toFixed(2));

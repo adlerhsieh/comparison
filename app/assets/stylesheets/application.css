@@ -160,9 +160,3 @@
 		top: -10px;
 	}
 }
-
-@media screen and (min-width: 700px) {
-	.left_block:hover, .right_block:hover {
-		background-color: white;
-	}
-}
