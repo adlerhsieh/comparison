@@ -96,7 +96,10 @@
 
 .aligncenter {
 	text-align: center;
-	margin-top: -10px;
+}
+
+.alignright {
+	text-align: right;
 }
 
 .bottom_text {
@@ -138,8 +141,12 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 50%;
+	width: 100%;
 	margin-top: 10%;
+}
+
+.ranking_table {
+	width: 300px;
 }
 
 .invisible {
