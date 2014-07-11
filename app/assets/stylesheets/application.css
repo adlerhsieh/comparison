@@ -160,3 +160,9 @@
 		top: -10px;
 	}
 }
+
+@media handheld {
+	.left_block:hover, .right_block:hover {
+		background-color: white;
+	}
+}
