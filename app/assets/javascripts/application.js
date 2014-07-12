@@ -162,6 +162,10 @@ function continue_by_enter() {
 }
 
 function show_score_board() {
+	if ( $(window).width() < 700) {
+		$(".bottom_block").fadeOut();
+		$(".score_board").css("height", "100%");
+	};
 	$(".score_board").css("display", "block");
 	$(".score_board").animate({opacity: 1});
 	$(document).unbind("keydown", continue_by_enter);
