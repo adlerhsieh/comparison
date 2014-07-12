@@ -126,6 +126,7 @@
 .menu {
 	display: block;
 	position: absolute;
+	background-color: #F5F6CE;
 	height: 100%;
 	width: 100%;
 }
