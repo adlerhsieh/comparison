@@ -24,16 +24,22 @@ var left_option = [];
 var right_option = [];
 var random_formula = 0;
 var score = 0;
-var life = 3;
-var difficulty = 5;
+var life = 5;
+var difficulty = 4;
+var chain = 0;
+var setTime = 0;
+var setChain = 0;
+var x = 10;
 
 //setting scene
 $(document).ready(function(){
 	$('body').bind('touchmove', function(e){e.preventDefault()})
 	$('body').css("overflow", "hidden");
+	$(".display_chain").css("display", "none");
 	refresh();
 	$(document).bind("keydown", start_by_enter);
 	$(".countdown").text(countdown.toFixed(2));
+	$(".life").text(life);
 	// setting up animations
 	$(".bottom_block").css("margin-top", "50%");
 	$(".left_block").css("margin-left", "-50%");
@@ -105,9 +111,69 @@ function time_count() {
 
 function correct_answer() {
 	score = score + 1;
+	chain = chain + 1;
 	$(".score").text(score);
+	trigger_chain();
 	display_correct();
 	refresh();
+}
+
+function wrong_answer() {
+	life = life - 1;
+	chain = 0;
+	trigger_chain();
+	$(".life").text(life);
+	display_wrong();
+	if (life == 0) {
+		game_over();
+		$(".life").css("color", "red");
+	} else {
+		refresh();
+	}
+}
+
+function trigger_chain () {
+	clearInterval(setTime);
+	clearInterval(setChain);
+	$(".display_chain").stop();
+	$(".display_chain").css("opacity", 1);
+	x = chain % 5
+	switch(true) {
+		case (chain == 0):
+			$(".display_chain").css("display", "none");
+			break;
+		case (chain == 10):
+			countdown = countdown + 4;
+			$(".chain_input").text("+3s");
+			$(".display_chain").css("color", "#2EFE64");
+			break;
+		case (chain == 15):
+			countdown = countdown + 6;
+			$(".chain_input").text("+5s");
+			$(".display_chain").css("color", "#2EFE64");
+			break;
+		case (chain == 20):
+			countdown = countdown + 8;
+			$(".chain_input").text("+10s");
+			$(".display_chain").css("color", "#2EFE64");
+			break;
+		case(chain > 20 && x == 0):
+			countdown = countdown + 10;
+			$(".chain_input").text("+10s");
+			$(".display_chain").css("color", "#2EFE64");
+			break;
+		case (chain > 3):
+			$(".display_chain").css("color", "yellow");
+			$(".display_chain").css("display", "table");
+			$(".chain_input").text(chain);
+			break;
+	}
+	setTime = setInterval(function(){
+		$(".display_chain").fadeOut();
+	}, 2000);
+	setChain = setInterval(function(){
+		chain = 0;
+	}, 2500);	
 }
 
 function display_correct() {
@@ -128,18 +194,6 @@ function display_wrong() {
 		$(".display_check").css("display", "none");
 		$(".display_check").css("opacity", 1);
 	}, 350);
-}
-
-function wrong_answer() {
-	life = life - 1;
-	$(".life").text(life);
-	display_wrong();
-	if (life == 0) {
-		game_over();
-		$(".life").css("color", "red");
-	} else {
-		refresh();
-	}
 }
 
 function start_by_enter() {

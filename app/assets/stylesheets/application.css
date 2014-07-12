@@ -186,13 +186,36 @@
 }
 
 .display_check {
-	width: 300px;
+	width: 200px;
 	position: absolute;
 	margin: auto;
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom: 0;
+}
+
+.display_chain {
+	width: 180px;
+	height: 180px;
+	position: absolute;
+	display: table;
+	margin: auto;
+	left: 0;
+	right: 0;
+	margin-top: 30%;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	color: yellow;
+}
+
+.inner_div {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.chain_input {
+	font-size: 60px;
+	margin-top: -40px;
 }
 
 @media all and (max-width: 700px) {
@@ -217,6 +240,11 @@
 	}
 	.display_check {
 		width: 150px;
+	}
+	.display_chain {
+		width: 120px;
+		height: 120px;
+		top: 40%;
 	}
 }
 
