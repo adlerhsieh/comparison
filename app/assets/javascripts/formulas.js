@@ -22,6 +22,12 @@ function formula_4(rand_number){
 	answer_string = answer_random[0] + " + " + answer_random[1] + " + " + answer_random[2] + " - " + answer_random[3];
 };
 
+function check_if_equal() {
+	if (left_option[0] == right_option[0]) {
+		refresh();
+	};
+}
+
 function refresh() {
 	clear_data();
 	if (score > difficulty) {
@@ -41,9 +47,9 @@ function refresh() {
 			store_right_number_data();
 			break;
 		case 15:
-			formula_1(50);
+			formula_1(40);
 			store_left_number_data();
-			formula_2(35);
+			formula_2(30);
 			store_right_number_data();
 			break;
 		case 20:
@@ -77,5 +83,5 @@ function refresh() {
 			store_right_number_data();
 			break;
 	};
-
+	check_if_equal();
 };

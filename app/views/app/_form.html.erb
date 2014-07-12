@@ -1,9 +1,16 @@
+<h4 class="aligncenter">你的分數</h4>
+<div class="input_form">
 <%= form_for @new_user do |f| %>
-	<div class="row" align="center">
-		<div class="small-3 small-offset-3 columns"><%= f.text_field :name, :style => "width: 100%;", 
-		:placeholder => "姓名", :id => "input_name" %></div>
-		<div class="small-3 columns"><%= f.submit "加入排名", class: "tiny button" %></div>
-		<div class="small-2 columns"></div>
-	</div>
+	<table class="ranking_table" align="center" style="background-color: #E4E4E4; border: 1px solid black">
+		<tr style="background-color: #E4E4E4;">
+				<td style="width: 240px" class="aligncenter"><%= f.text_field :name, :style => "width: 100%; margin-top: 10px;", 
+		:placeholder => "輸入姓名", :id => "input_name" %></td>
+				<td class="alignright score_display"></td>
+		</tr>
+	</table>		
+	<p></p>
+	<div><%= f.submit "再玩一次", class: "tiny button div_aligncenter" %></div>
+	<p class="aligncenter">作者：<a href="https://github.com/nkj20932">nkj20932</a></p>
 	<div class="invisible"><%= f.text_field :score, :readonly => "readonly", :class => "score_input" %></div>
 <% end %>
+</div>

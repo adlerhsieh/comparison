@@ -34,11 +34,12 @@ $(document).ready(function(){
 	refresh();
 	$(document).bind("keydown", start_by_enter);
 	$(".countdown").text(countdown.toFixed(2));
-	//setting up animations
-	$(".bottom_block").css("margin-top", "20%");
+	// setting up animations
+	$(".bottom_block").css("margin-top", "50%");
 	$(".left_block").css("margin-left", "-50%");
 	$(".right_block").css("margin-left", "50%");
-	$(".game_over").css("margin-top", "-80%")
+	$(".game_over").css("margin-top", "-80%");
+	$(".display_check").css("display", "none");
 })
 
 //Setting up click events
@@ -72,7 +73,7 @@ $(document).ready(function(){
 	});
 });
 
-function check_key(){
+function check_answer(){
 	if (event.which == 37) {
 			if (left_option[0] >= right_option[0]) {
 				correct_answer();
@@ -105,14 +106,37 @@ function time_count() {
 function correct_answer() {
 	score = score + 1;
 	$(".score").text(score);
+	display_correct();
 	refresh();
+}
+
+function display_correct() {
+	$(".display_check").attr("src", "/assets/correct_circle.png");
+	$(".display_check").css("display", "block");
+	$(".display_check").animate({opacity: 0}, 300);
+	setTimeout(function(){
+		$(".display_check").css("display", "none");
+		$(".display_check").css("opacity", 1);
+	}, 350);
+}
+
+function display_wrong() {
+	$(".display_check").attr("src", "/assets/wrong.png");
+	$(".display_check").css("display", "block");
+	$(".display_check").animate({opacity: 0}, 300);
+	setTimeout(function(){
+		$(".display_check").css("display", "none");
+		$(".display_check").css("opacity", 1);
+	}, 350);
 }
 
 function wrong_answer() {
 	life = life - 1;
 	$(".life").text(life);
+	display_wrong();
 	if (life == 0) {
 		game_over();
+		$(".life").css("color", "red");
 	} else {
 		refresh();
 	}
@@ -126,7 +150,7 @@ function start_by_enter() {
 
 function start_the_game() {
 	time = setInterval(time_count, 10);
-	$(document).bind("keydown", check_key);
+	$(document).bind("keydown", check_answer);
 	$(document).unbind("keydown", start_by_enter);
 	flash_animation();
 }
@@ -156,11 +180,12 @@ function restart() {
 function game_over() {
 	$(".game_over").css("display", "block");
 	$(".game_over").animate({marginTop: 0}, 300);
-	$(document).unbind("keydown", check_key);
+	$(document).unbind("keydown", check_answer);
 	$(document).unbind("keydown", start_by_enter);
 	$(document).bind("keydown", continue_by_enter);		
 	clearInterval(time);
 	$(".score_input").val(score);
+	$(".score_display").text(score + "分");
 }
 
 function clear_data() {
@@ -182,6 +207,9 @@ function store_right_number_data() {
 
 function flash_animation () {
 	$(".menu").animate({opacity: 0}, 500);
+	setTimeout(function(){
+		$(".menu").css("display", "none");
+	}, 500);
 	$(".bottom_block").animate({marginTop: 0}, 500);
 	$(".left_block").animate({marginLeft: 0}, 500);
 	$(".right_block").animate({marginLeft: 0}, 500);

@@ -1,13 +1,12 @@
-
 <div class="left_block">
 	<p class="left_number"></p>
 </div><div class="right_block">
 	<p class="right_number"></p>
 </div>
-
+<!-- Bottom Menu -->
 <div class="bottom_block">
 	<div class="top_divider">
-			<div class="chain_block" style="margin-left: 9.5%">
+			<div class="chain_block">
 				<p class="aligncenter bottom_text">時間</p><p class="countdown aligncenter bottom_text_2"></p>
 			</div>
 			<div class="chain_block">
@@ -17,16 +16,14 @@
 				<p class="aligncenter bottom_text">機會</p><p class="life aligncenter bottom_text_2">3</p>
 			</div>
 			<div class="chain_block">
-				<p class="aligncenter restart bottom_text">Restart</p>
+				<p class="aligncenter restart bottom_text">重新開始</p>
 			</div>
 	</div>
 </div>
-
+<%= image_tag("correct_circle.png", class: "display_check", id: "display_check") %>
 <!-- flash screen & animations -->
 <div class="menu">
-	<p class="opening_title">數字比大小</p>
-	<p style="text-align:center">規則：選擇數字大的那一邊</p>
-	<p style="text-align:center">(點一下或按Enter開始)</p>
+	<%= image_tag("splash_screen.png", class: "display_menu")%>
 </div>
 <div class="game_over"><p class="inner_text">Game Over</p><p class="inner_text" style="font-size: 20px;">(點一下或按Enter繼續)</p></div>
 <div class="score_board">

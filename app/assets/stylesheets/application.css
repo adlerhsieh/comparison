@@ -33,22 +33,25 @@
 
 .bottom_block {
 	position: absolute;
-	display: block;
+	display: table;
 	background-color: #424242;
 	width: 100%;
 	height: 20%;
 	top: 80%;
 }
 
+.top_divider {
+	color: white;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
 .chain_block {
 	display: inline-block;
 	width: 20%;
 	color: white;
-}
-
-.top_divider {
-	position: relative;
-	margin-top: 2%;
+	height: 20px;
 }
 
 .left_number {
@@ -70,7 +73,7 @@
 	position: absolute;
 	height: 80%;
 	width: 100%;
-	background-color: white;
+	background-color: #F5F6CE;
 }
 
 .inner_text {
@@ -104,12 +107,12 @@
 
 .bottom_text {
 	position: relative;
-	top: 15px;
 	font-size: 20px;
 }
 
 .bottom_text_2 {
 	font-size: 24px;
+	margin-top: -15px;
 }
 
 .restart {
@@ -123,8 +126,17 @@
 .menu {
 	display: block;
 	position: absolute;
-	height: 80%;
+	height: 100%;
 	width: 100%;
+}
+
+.display_menu {
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
 }
 
 .score_board {
@@ -141,7 +153,20 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	margin-top: 10%;
+}
+
+.input_form {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.rules {
+	border: 1px solid black; 
+	width: 30%; 
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
 }
 
 .ranking_table {
@@ -150,6 +175,22 @@
 
 .invisible {
 	opacity: 0;
+}
+
+.div_aligncenter {
+	display: block; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+.display_check {
+	width: 300px;
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
 }
 
 @media all and (max-width: 700px) {
@@ -168,6 +209,12 @@
 	}
 	.restart {
 		top: -10px;
+	}
+	.rules {
+		width: 50%;
+	}
+	.display_check {
+		width: 150px;
 	}
 }
 
