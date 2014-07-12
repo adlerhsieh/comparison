@@ -1,7 +1,7 @@
 <%= form_for @new_user do |f| %>
 	<div class="row" align="center">
 		<div class="small-3 small-offset-3 columns"><%= f.text_field :name, :style => "width: 100%;", 
-		:placeholder => "姓名" %></div>
+		:placeholder => "姓名", :id => "input_name" %></div>
 		<div class="small-3 columns"><%= f.submit "加入排名", class: "tiny button" %></div>
 		<div class="small-2 columns"></div>
 	</div>

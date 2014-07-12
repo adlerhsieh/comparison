@@ -27,11 +27,22 @@ var score = 0;
 var life = 3;
 var difficulty = 5;
 
+//setting scene
 $(document).ready(function(){
 	$('body').bind('touchmove', function(e){e.preventDefault()})
+	$('body').css("overflow", "hidden");
 	refresh();
 	$(document).bind("keydown", start_by_enter);
 	$(".countdown").text(countdown.toFixed(2));
+	//setting up animations
+	$(".bottom_block").css("margin-top", "20%");
+	$(".left_block").css("margin-left", "-50%");
+	$(".right_block").css("margin-left", "50%");
+	$(".game_over").css("margin-top", "-80%")
+})
+
+//Setting up click events
+$(document).ready(function(){
 	$(".left_block").click(function(){
 		if (left_option[0] >= right_option[0]) {
 			correct_answer();
@@ -49,10 +60,7 @@ $(document).ready(function(){
 	});
 
 	$(".menu").click(function(){
-		time = setInterval(time_count, 10);
-		$(document).unbind("keydown", start_by_enter);
-		$(document).bind("keydown", check_key);
-		$(".menu").css("display", "none");
+		start_the_game();
 	});
 
 	$(".game_over").click(function(){
@@ -112,10 +120,15 @@ function wrong_answer() {
 
 function start_by_enter() {
 	if (event.which == 13) {
-		time = setInterval(time_count, 10);
-		$(document).bind("keydown", check_key);
-		$(".menu").css("display", "none");
+		start_the_game();	
 	};
+}
+
+function start_the_game() {
+	time = setInterval(time_count, 10);
+	$(document).bind("keydown", check_key);
+	$(document).unbind("keydown", start_by_enter);
+	flash_animation();
 }
 
 function continue_by_enter() {
@@ -127,11 +140,24 @@ function continue_by_enter() {
 function show_score_board() {
 	$(".score_board").css("display", "block");
 	$(".score_board").animate({opacity: 1});
+	$(document).unbind("keydown", continue_by_enter);
+	setTimeout(function() {
+		$("#input_name").focus();
+		$(document).bind("keydown", restart);	
+	}, 100);
+}
+
+function restart() {
+	if (event.which == 13) {
+		document.location.reload();
+	};
 }
 
 function game_over() {
 	$(".game_over").css("display", "block");
+	$(".game_over").animate({marginTop: 0}, 300);
 	$(document).unbind("keydown", check_key);
+	$(document).unbind("keydown", start_by_enter);
 	$(document).bind("keydown", continue_by_enter);		
 	clearInterval(time);
 	$(".score_input").val(score);
@@ -153,3 +179,10 @@ function store_right_number_data() {
 	right_option.push(answer_string);
 	$(".right_number").text(right_option[1]);
 };
+
+function flash_animation () {
+	$(".menu").animate({opacity: 0}, 500);
+	$(".bottom_block").animate({marginTop: 0}, 500);
+	$(".left_block").animate({marginLeft: 0}, 500);
+	$(".right_block").animate({marginLeft: 0}, 500);
+}
