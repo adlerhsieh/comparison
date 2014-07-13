@@ -30,10 +30,13 @@ var chain = 0;
 var setTime = 0;
 var setChain = 0;
 var x = 10;
+var viewportmeta = document.querySelector('meta[name="viewport"]')
 
 //setting scene
 $(document).ready(function(){
-	$('body').bind('touchmove', function(e){e.preventDefault()})
+	//lock smartphone scale
+	$('body').bind('touchmove', function(e){e.preventDefault()});
+	viewportmeta.content = "width=device-width, initial-scale=1";
 	$('body').css("overflow", "hidden");
 	$(".display_chain").css("display", "none");
 	refresh();
