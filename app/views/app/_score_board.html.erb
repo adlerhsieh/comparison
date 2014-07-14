@@ -8,6 +8,7 @@
 				<td class="aligncenter"><%= f.name %></td>
 				<td class="alignright"><%= f.score %>分</td>
 			</tr>
+			<% if i == 5 %><script>var no5 = <%= f.score %></script><% end %>
 			<% i = i + 1 %>
 		<% end %>
 	</table>

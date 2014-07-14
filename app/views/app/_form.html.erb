@@ -1,5 +1,5 @@
+<div class="input_form" id="input_form">
 <h4 class="aligncenter">你的分數</h4>
-<div class="input_form">
 <%= form_for @new_user do |f| %>
 	<table class="ranking_table" align="center" style="background-color: #E4E4E4; border: 1px solid black">
 		<tr style="background-color: #E4E4E4;">
@@ -10,7 +10,8 @@
 	</table>		
 	<p></p>
 	<div><%= f.submit "加入排名", class: "tiny button div_aligncenter" %></div>
-	<p class="aligncenter">作者：<a href="https://github.com/nkj20932">nkj20932</a></p>
 	<div class="invisible"><%= f.text_field :score, :readonly => "readonly", :class => "score_input" %></div>
 <% end %>
 </div>
+<p></p>
+<p class="aligncenter">作者：<a href="https://github.com/nkj20932">nkj20932</a></p>

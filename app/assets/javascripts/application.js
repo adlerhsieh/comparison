@@ -228,6 +228,9 @@ function show_score_board() {
 		$("#input_name").focus();
 		$(document).bind("keydown", restart);	
 	}, 100);
+	if (score < no5) {
+		$("#input_form").replaceWith("<div style='width:100px;display:block;margin:auto;left:0;right:0;' class='tiny button' onclick='document.location.reload()'>再玩一次</div>");
+	}
 }
 
 function restart() {
