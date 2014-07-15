@@ -1,32 +1,18 @@
 == README
 
-aaa
-bbb
-ccc
+* Ruby: 2.1.2
+* Rails: 4.1.2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a game of number comparison in which players continuously choose between numbers within time limit. The score determines the best player. 
 
-Things you may want to cover:
+The game is built on Rails application but includes mostly front-end languages like JavaScript, jQuery, and CSS. Only a rails model serves to ranking players according to their score. 
 
-* Ruby version
+For those who want to learn from this game, here are some tips.
 
-* System dependencies
+* JavaScript: separated into two sheets, application.js includes all functions and formulas.js includes formulas that calaulate and randomize the numbers in the quiz.
 
-* Configuration
+* CSS: The style is based on Foundation, which you may refer to http://foundation.zurb.com for customizing any element. Besides to my standard setting for html class and id, you may find settings for mobile & desktop version in @media queries.  
 
-* Database creation
+* Rails: Ranking function depends on the model user.rb. Use standard CRUD to create users and rank them in order as stated in users_controller.rb.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Feel free to use any code from this project, and enjoy the game. Thanks.
