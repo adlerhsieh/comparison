@@ -38,7 +38,7 @@ $(document).ready(function(){
 	$('body').css("overflow", "hidden");
 	$(".display_chain").css("display", "none");
 	refresh();
-	$(document).bind("keydown", start_by_enter);
+	$(window).bind("keydown", start_by_enter);
 	$(".countdown").text(countdown.toFixed(2));
 	$(".life").text(life);
 	// setting up animations
@@ -78,9 +78,10 @@ $(document).ready(function(){
 	$(".restart").click(function(){
 		document.location.reload();
 	});
+
 });
 
-function check_answer(){
+function check_answer(event){
 	if (event.which == 37) {
 			if (left_option[0] >= right_option[0]) {
 				correct_answer();
@@ -197,7 +198,7 @@ function display_wrong() {
 	}, 350);
 }
 
-function start_by_enter() {
+function start_by_enter(event) {
 	if (event.which == 13) {
 		start_the_game();	
 	};
@@ -205,12 +206,12 @@ function start_by_enter() {
 
 function start_the_game() {
 	time = setInterval(time_count, 10);
-	$(document).bind("keydown", check_answer);
-	$(document).unbind("keydown", start_by_enter);
+	$(window).bind("keydown", check_answer);
+	$(window).unbind("keydown", start_by_enter);
 	flash_animation();
 }
 
-function continue_by_enter() {
+function continue_by_enter(event) {
 	if (event.which == 13) {
 		show_score_board();
 	};
@@ -223,17 +224,17 @@ function show_score_board() {
 	};
 	$(".score_board").css("display", "block");
 	$(".score_board").animate({opacity: 1});
-	$(document).unbind("keydown", continue_by_enter);
+	$(window).unbind("keydown", continue_by_enter);
 	setTimeout(function() {
 		$("#input_name").focus();
-		$(document).bind("keydown", restart);	
+		$(window).bind("keydown", restart);	
 	}, 100);
 	if (score < no5) {
 		$("#input_form").replaceWith("<div style='width:100px;display:block;margin:auto;left:0;right:0;' class='tiny button' onclick='document.location.reload()'>再玩一次</div>");
 	}
 }
 
-function restart() {
+function restart(event) {
 	if (event.which == 13) {
 		document.location.reload();
 	};
@@ -242,9 +243,9 @@ function restart() {
 function game_over() {
 	$(".game_over").css("display", "block");
 	$(".game_over").animate({marginTop: 0}, 300);
-	$(document).unbind("keydown", check_answer);
-	$(document).unbind("keydown", start_by_enter);
-	$(document).bind("keydown", continue_by_enter);		
+	$(window).unbind("keydown", check_answer);
+	$(window).unbind("keydown", start_by_enter);
+	$(window).bind("keydown", continue_by_enter);		
 	clearInterval(time);
 	$(".score_input").val(score);
 	$(".score_display").text(score + "分");
